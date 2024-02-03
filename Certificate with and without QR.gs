@@ -1,3 +1,10 @@
+ //The google slide ID where template is present
+  var templateId = 'TEMPLATE_ID';
+
+  //The drive folder to which the certificate output is to be generated
+  var folderId = 'FOLDER_ID';
+
+
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Custom Menu')
@@ -6,27 +13,17 @@ function onOpen() {
      .addToUi();
 }
 
-
 function  generateCertificates()
 {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var dataRange = sheet.getDataRange();
   var data = dataRange.getValues();
   var headers = data[0];
-  
-  //The google slide ID where template is present
-  var templateId = '1HfFgoQD_0sgNqypUP9H6CfQ22vdxGL53UM7fVbx6fFg';
-
-  //The drive folder to which the certificate output is to be generated
-  var folderId = '1QxgcuXd2O94gEVquuZHEen1xPoyn1bdH';
-
-  var qrColumnHeader = 'QRCode'; // Change this to the header name of the QR code column
 
   for (var i = 1; i < data.length; i++) 
   {
     var row = data[i];
     var name = row[headers.indexOf('Name')];
-    var qrCellValue = row[headers.indexOf(qrColumnHeader)];
     // Add more placeholders as needed
 
     var newSlide = DriveApp.getFileById(templateId).makeCopy(name + ' Certificate');
@@ -69,9 +66,6 @@ function generateCertificatesWithAQR() {
   var dataRange = sheet.getDataRange();
   var data = dataRange.getDisplayValues();
   var headers = data[0];
-
-  var templateId = '1HfFgoQD_0sgNqypUP9H6CfQ22vdxGL53UM7fVbx6fFg';
-  var folderId = '1QxgcuXd2O94gEVquuZHEen1xPoyn1bdH';
 
   var qrColumnHeader = 'QRCode'; // Change this to the header name of the QR code column
 
