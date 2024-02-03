@@ -6,6 +6,7 @@ function onOpen() {
      .addToUi();
 }
 
+
 function  generateCertificates()
 {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
