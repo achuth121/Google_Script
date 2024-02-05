@@ -1,26 +1,27 @@
 function ExtractLink() {
+  var sheetName = "Sheet 1";
+  var startRow = 2;
+  var valueCol = 1;
+  var resultCol = 2;
+
   // Open the active spreadsheet
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 
-  // Get the sheet named "Consol"
-  var sheet = spreadsheet.getSheetByName("Consol");
+  // Get the sheet
+  var sheet = spreadsheet.getSheetByName(sheetName);
 
-  // Get the range for column H
-  // Number 2 represents the roẇnumber and number 8 represents the coloumn number
-  var range = sheet.getRange(2,8, sheet.getLastRow()-1, 1);
+  // Get the range for column A
+  var range = sheet.getRange(startRow, valueCol, sheet.getLastRow()-1, 1);
 
   var g= range.getRichTextValues();
 
-  // Iterate through each cell in column H
+  // Iterate through each cell in column
   for (var i = 0; i < g.length; i++) 
   {     
-      Logger.log(g[i][0]);
-      Logger.log( g[i][0].getLinkUrl());      
-    
     var linkUrl = g[i][0].getLinkUrl();
 
-    //  Write to column I
-    //  Number 2 represents the roẇnumber and number 9 represents the coloumn number
-    sheet.getRange(2 + i, 9).setValue(linkUrl);
+    //  Write to column B
+    sheet.getRange(startRow + i, resultCol).setValue(linkUrl);
   }
+
 }
