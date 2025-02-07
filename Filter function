@@ -1,0 +1,17 @@
+function filterBySector(Sectors) 
+{
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("SHEET_NAME");
+  var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues(); // Assuming data starts from row 2
+  
+  var filteredData = [];
+  
+  for (var i = 0; i < data.length; i++) 
+  {
+    var sectors = data[i][1].split(", "); // Assuming sectors are separated by ", " and there are no leading or trailing spaces
+    if (sectors.indexOf(Sectors) !== -1) {
+      filteredData.push(data[i][0]); // Assuming the company name is in the first column
+    }
+  }
+  
+  return filteredData;
+}
